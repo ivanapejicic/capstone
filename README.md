@@ -64,11 +64,11 @@ WePool will integrate with external APIs, including Google Maps for route optimi
 
 ### Mockups
 
-![Home Page](./mockup-assets/homePage.jpg)
-![Sign Up](./mockup-assets/signUp.jpg)
-![Form](./mockup-assets/form.jpg)
-![Search Results](./mockup-assets/searchResult.jpg)
-![User Profile](./mockup-assets/editProfile.jpg)
+![Home Page](./src/assets/mockup/homePage.jpg)
+![Sign Up](./src/assets/mockup/signUp.jpg)
+![Form](./src/assets/mockup/form.jpg)
+![Search Results](./src/assets/mockup/searchResult.jpg)
+![User Profile](./src/assets/mockup/editProfile.jpg)
 
 
 ### Data
