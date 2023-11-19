@@ -2,9 +2,82 @@
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variables' as *;
 
-.user{
+.user {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    &__photo {
+        width: 30vh;
+        height: 30vh;
+        margin-top: 2rem;
+
+        @include tablet {
+            width: 50vh;
+            height: 50vh;
+        }
+
+        @include desktop {
+            width: 50vh;
+            height: 50vh;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+
+        @include tablet{
+            flex-direction: row;
+            align-items: baseline;
+            gap: 6rem;
+            margin-bottom: 1rem;
+        }
+
+        @include desktop{
+            flex-direction: row;
+            align-items: baseline;
+            gap: 15rem;
+        }
+        &-box {
+            margin: 2rem;
+
+
+            &__title {
+                margin-bottom: .5rem;
+
+                @include tablet {
+                    font-size: 2.5rem;
+                }
+                @include desktop {
+                    font-size: 3rem;
+                }
+            }
+
+            &__subtitle {
+                margin-bottom: .5rem;
+
+                @include tablet {
+                    font-size: 1.5rem;
+                    margin-bottom: 2rem;
+                }
+                @include desktop {
+                    font-size: 2rem;
+                    margin-bottom: 2rem;
+                }
+            }
+
+            &__button {
+                width: 100%;
+                background-color: light-grey;
+                border: none;
+                padding: .5rem;
+
+                &:hover {
+                    background-color: $turquoise;
+                }
+            }
+        }
+    }
 }
