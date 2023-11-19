@@ -1,8 +1,11 @@
+import Header from '../../components/Header/Header';
 import './User.scss';
+
 
 function User() {
     return(
         <div className='user'>
+            <Header />
             <div className='user__top'>
                 <h1 className='user__top-title'>Ready to dive in?</h1>
                 <h2 className='user__top-subtitle'>Sign up for the fun ride</h2>
