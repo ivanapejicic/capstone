@@ -40,6 +40,11 @@
         @include tablet {
             width: 20rem;
         }
+        &__arrow {
+            background-color: $turquoise;
+            border-radius: 50%;
+            padding: .45rem;
+        }
 
         .form__label {
             display: block;

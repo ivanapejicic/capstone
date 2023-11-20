@@ -1,9 +1,12 @@
 import './Signup.scss';
+import { Link } from 'react-router-dom';
+import arrowBack from '../../icons/arrow_back_FILL0_wght400_GRAD0_opsz24.svg';
 
 function Signup() {
     return (
         <div className='signup'>
             <form className='form'>
+                <Link to='/user'><img className='form__arrow' src={arrowBack} alt='arrow back icon that takes user to home page'></img></Link>
                 <h1 className='signup__title'>Create an Account</h1>
                 <label className='form__label' htmlFor="username">Username:</label>
                 <input className='form__input' type="text" id="username" name="username" required />

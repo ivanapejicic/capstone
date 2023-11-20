@@ -1,11 +1,14 @@
 import './Login.scss';
 import login from '../../icons/passkey_FILL0_wght400_GRAD0_opsz24.svg';
+import arrowBack from '../../icons/arrow_back_FILL0_wght400_GRAD0_opsz24.svg';
+import { Link } from 'react-router-dom';
 
 function Login() {
     return (
         <>
             <div className='login'>
                 <form className='form'>
+                    <Link to='/user'><img className='form__arrow' src={arrowBack} alt='arrow back icon that takes user to home page'></img></Link>
                     <h1 className='login__title'>Welcome Back! <img src={login} alt="google icon for user login"></img></h1>
                     <label className='form__label' htmlFor="username">Username:</label>
                     <input className='form__input' type="text" id="username" name="username" required />
