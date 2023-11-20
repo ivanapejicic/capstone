@@ -4,7 +4,6 @@ import login from '../../icons/passkey_FILL0_wght400_GRAD0_opsz24.svg';
 function Login() {
     return (
         <>
-
             <div className='login'>
                 <form className='form'>
                     <h1 className='login__title'>Welcome Back! <img src={login} alt="google icon for user login"></img></h1>
