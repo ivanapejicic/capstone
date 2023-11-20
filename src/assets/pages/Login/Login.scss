@@ -24,8 +24,12 @@
     }
 
     &__title {
-        padding: 1.2rem;
+        padding: 1rem 1.7rem;
         z-index: 1;
+
+        @include tablet{
+            padding: 1rem 3.5rem;
+        }
     }
 
     .form {
@@ -39,6 +43,10 @@
 
         @include tablet {
             width: 20rem;
+        }
+        @include desktop {
+            width: 25rem;
+            padding: 2rem;
         }
 
         &__arrow {
