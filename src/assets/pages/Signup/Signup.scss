@@ -24,8 +24,9 @@
     }
 
     &__title {
-        padding: 1rem 3rem;
+        padding: 1rem;
         z-index: 1;
+        text-align: center;
     }
 
     .form {
@@ -44,6 +45,7 @@
         @include desktop {
             width: 22rem;
         }
+        
         &__arrow {
             background-color: $turquoise;
             border-radius: 50%;
@@ -72,7 +74,7 @@
 
         .form__button {
             width: 100%;
-            background-color: lightgrey;
+            background-color: $light-grey;
             border: none;
             padding: .5rem;
 
