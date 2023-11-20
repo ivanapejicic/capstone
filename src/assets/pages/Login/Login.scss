@@ -1,53 +1,76 @@
+// Login.scss
+
 @use '../../styles/partials/colors' as *;
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variables' as *;
 
 .login {
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-}
 
-.form {
-    width: 16rem;
-    padding: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: .5rem;
-    background-color: #fff;
-    box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
-
-    @include tablet {
-        width: 20rem;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: url('../../images/home.jpeg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
     }
-}
 
-.form__label {
-    display: block;
-    margin-bottom: .5rem;
-}
+    &__title {
+        padding: 1.2rem;
+        z-index: 1;
+    }
 
-.form__input {
-    width: 100%;
-    padding: .5rem;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-}
+    .form {
+        width: 16rem;
+        padding: 1.2rem;
+        border: 1px solid #ccc;
+        border-radius: .5rem;
+        background-color: #fff;
+        box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
+        z-index: 1; 
 
-.form__links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
+        @include tablet {
+            width: 20rem;
+        }
 
-.form__button {
-    width: 100%;
-    background-color: lightgrey; // Corrected typo here
-    border: none;
-    padding: .5rem;
+        .form__label {
+            display: block;
+            margin-bottom: .5rem;
+        }
 
-    &:hover {
-        background-color: $turquoise;
+        .form__input {
+            width: 100%;
+            padding: .5rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .form__links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .form__button {
+            width: 100%;
+            background-color: lightgrey;
+            border: none;
+            padding: .5rem;
+
+            &:hover {
+                background-color: $turquoise;
+            }
+        }
     }
 }
