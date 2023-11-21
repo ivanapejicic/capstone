@@ -13,12 +13,12 @@ function Login() {
         event.preventDefault();
 
         axios.post("http://localhost:8080/users/login", {
-            email: event.target.username.value,
+            username: event.target.username.value,
             password: event.target.password.value
         })
             .then((response) => {
                 sessionStorage.setItem('token', response.data.token)
-                navigate('/')
+                navigate('/profile')
             })
     }
     return (
