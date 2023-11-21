@@ -20,6 +20,10 @@ function Login() {
                 sessionStorage.setItem('token', response.data.token)
                 navigate('/profile')
             })
+            .catch((error) => {
+                setError("Invalid credentials. Please try again.");
+            });
+
     }
     return (
         <>
