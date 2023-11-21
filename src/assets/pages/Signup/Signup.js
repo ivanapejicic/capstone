@@ -58,9 +58,6 @@ function Signup() {
                 {success && <div className="signup__message">Signed up!</div>}
                 {error && <div className="signup__message">{error}</div>}
             </form>
-            <p>
-                Have an account? <Link to="/login">Log in</Link>
-            </p>
         </div>
     );
 }

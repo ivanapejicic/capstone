@@ -42,9 +42,6 @@ function Login() {
                     <button className='form__button' type="submit">Login</button>
                     {error && <div className="login__message">{error}</div>}
                 </form>
-                <p>
-                    Need an account? <Link to="/signup">Sign up</Link>
-                </p>
             </div>
         </>
     );
