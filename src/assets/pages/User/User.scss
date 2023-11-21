@@ -48,10 +48,10 @@
                 margin-bottom: .5rem;
 
                 @include tablet {
-                    font-size: 2.5rem;
+                    font-size: 1.75rem;
                 }
                 @include desktop {
-                    font-size: 3rem;
+                    font-size: 2rem;
                 }
             }
 
@@ -59,11 +59,11 @@
                 margin-bottom: .5rem;
 
                 @include tablet {
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                     margin-bottom: 2rem;
                 }
                 @include desktop {
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                     margin-bottom: 2rem;
                 }
             }
@@ -73,7 +73,6 @@
                 background-color: $light-grey;
                 border: none;
                 padding: .5rem;
-                // font-family: 'Times New Roman', Times, serif;
                 
 
                 &:hover {
