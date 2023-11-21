@@ -21,7 +21,6 @@ function Profile() {
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
@@ -47,6 +46,7 @@ function Profile() {
 		sessionStorage.removeItem("token");
 		setUser(null);
 		setFailedAuth(true);
+		
 	};
 
 	if (failedAuth) {
@@ -76,10 +76,11 @@ function Profile() {
 				Welcome back, {user.full_name}
 			</p>
 
-			{/* <h2>My Profile</h2>
+			<h2>My Profile</h2>
+			<p>User Name: {user.username}</p>
 			<p>Email: {user.email}</p>
-			<p>Phone: {user.phone}</p>
-			<p>Address: {user.address}</p> */}
+			<p>Phone: {user.phone_number}</p>
+			<p>Mini Bio: {user.mini_bio}</p>
 
 			<button className="dashboard__logout" onClick={handleLogout}>
 				Log out

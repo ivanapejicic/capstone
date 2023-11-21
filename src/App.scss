@@ -1,4 +1,4 @@
-@use '../src/assets/styles/partials/colors' as *;
+@use '../src/assets/styles/partials/typography' as *;
 @use '../src/assets/styles/partials/mixin' as *;
 @use '../src/assets/styles/partials/variables' as *;
 
@@ -7,5 +7,6 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: 'Amatic SC';
+  font-family: 'Heading Font';
+  color: $font-black;
 }

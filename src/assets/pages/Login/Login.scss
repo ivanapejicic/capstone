@@ -1,4 +1,4 @@
-@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/typography' as *;
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variables' as *;
 
@@ -68,18 +68,13 @@
             box-sizing: border-box;
         }
 
-        .form__links {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
         .form__button {
             width: 100%;
             background-color: $light-grey;
             border: none;
-            padding: .5rem;
+            margin-top: .4rem;
+            padding: .6rem;
+            font-family: 'the other one';
 
             &:hover {
                 background-color: $turquoise;

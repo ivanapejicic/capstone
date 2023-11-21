@@ -55,7 +55,11 @@ function Signup() {
                 <input className='form__input' type="tel" id="phoneNumber" name="phoneNumber" required />
                 <br />
                 <button className='form__button' type="submit">Sign Up</button>
-                {success && <div className="signup__message">Signed up!</div>}
+                {success && (
+                    <div className="signup__message">
+                        Signed up! <Link to="/login">Go to Login</Link>
+                    </div>
+                )}
                 {error && <div className="signup__message">{error}</div>}
             </form>
         </div>

@@ -1,0 +1,31 @@
+/* Regular */
+@font-face {
+    font-family: 'Kosugi Regular';
+    src:  url("../../fonts/Kosugi-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Heading Font';
+    src: url('../../fonts/IndieFlower-Regular.ttf') format("truetype");
+    font-weight: 100;
+}
+
+//the others
+@font-face {
+    font-family: "the other one";
+    src: url('../../fonts/Raleway/Raleway-VariableFont_wght.ttf') format('truetype');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "the other one";
+    src: url('../../fonts/Raleway/Raleway-SemiBold.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "the other one";
+    src: url('../../fonts/Raleway/Raleway-Bold.ttf') format('truetype');
+    font-weight: 700;
+}

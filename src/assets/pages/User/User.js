@@ -13,12 +13,12 @@ function User() {
             <div className='user__content-box'>
                 <h1 className='user__content-box__title'>Ready to dive in?</h1>
                 <h2 className='user__content-box__subtitle'>Sign up for the fun ride</h2>
-                <Link to='/signup'><button className='user__content-box__button'><strong>SIGN UP</strong></button></Link>
+                <Link to='/signup'><button className='user__content-box__button'><strong className='testing'>SIGN UP</strong></button></Link>
             </div>
             <div className='user__content-box'>
                 <h1 className='user__content-box__title'>Already on board?</h1>
                 <h2 className='user__content-box__subtitle'>Log in to your account</h2>
-                <Link to='/login'><button className='user__content-box__button'><strong>LOG IN</strong></button></Link>
+                <Link to='/login'><button className='user__content-box__button'><strong className='testing'>LOG IN</strong></button></Link>
             </div>
             </div>
         </div>
