@@ -6,6 +6,7 @@ import About from './assets/components/About/About';
 import Login from './assets/pages/Login/Login';
 import Signup from './assets/pages/Signup/Signup';
 import Rides from './assets/pages/Rides/Rides';
+import Profile from './assets/pages/Profile/Profile';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path= '/login' element={<Login />} />  
           <Route path= '/signup' element={<Signup />} /> 
           <Route path='/rides'  element={<Rides />} />
+          <Route path='/profile/:id' element={<Profile />} />
         </Routes>      
       </BrowserRouter>
     </div>
