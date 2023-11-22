@@ -77,37 +77,44 @@ function Rides() {
 		<>
 			<HeaderProfile />
 			<main className="dashboard">
-				<h3>Welcome back, {user.full_name}</h3>
-				<p>Type your travel details below and find potential travel buddies.</p>
+				<h2>Welcome back, {user.full_name}</h2>
+				<h3>Type your travel details below and find potential travel buddies.</h3>
 				<div className="form-rides" id="search-form">
 					<input className='form-rides__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip' />
 
 					<input className='form-rides__input' type="text" id="ending-zip" name="ending-zip" placeholder="Ending Zip" />
 
 					<div className="form-rides__group">
-						<input className='form-rides__input' type="text" id="departure-time" name="departure-time" placeholder="Departure Time" />
-						<select className='form-rides__select' id="departure-am-pm" name="departure-am-pm">
-							<option value="AM">🕕 AM</option>
-							<option value="PM">🕕 PM</option>
+						<label htmlFor="departure-time">Departure Time</label>
+						<select className="form-rides__select" id="departure-time" name="departure-time">
+							{Array.from({ length: 24 }, (_, i) => (
+								<option key={i} value={i}>
+									{i < 10 ? `0${i}:00` : `${i}:00`}
+								</option>
+							))}
 						</select>
 					</div>
 
 					<div className="form-rides__group">
-						<input className='form-rides__input' type="text" id="return-time" name="return-time" placeholder="Return Time" />
-						<select className='form-rides__select' id="return-am-pm" name="return-am-pm">
-							<option value="AM">🕕 AM</option>
-							<option value="PM">🕕 PM</option>
+						<label htmlFor="return-time">Return Time</label>
+						<select className="form-rides__select" id="return-time" name="return-time">
+							{Array.from({ length: 24 }, (_, i) => (
+								<option key={i} value={i}>
+									{i < 10 ? `0${i}:00` : `${i}:00`}
+								</option>
+							))}
 						</select>
 					</div>
+
 
 					<button className='form-rides__button' type="button" onClick={submitForm}>
 						Search 🚙
 					</button>
+					<button className="form-rides__button">
+						Offer a ride  🚙
+					</button>
 				</div>
 				<div className="rides-buttons">
-					<div className='offer'>
-						<Link to='/offer'><button className="rides-buttons__button">Offer a ride</button></Link>
-					</div>
 					<div className='your-rides'>
 						<Link to='/your-rides'><button className="rides-buttons__button">Edit your existing rides</button></Link>
 					</div>
