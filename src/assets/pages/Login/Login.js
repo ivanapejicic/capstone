@@ -18,7 +18,7 @@ function Login() {
         })
             .then((response) => {
                 sessionStorage.setItem('token', response.data.token)
-                navigate('/profile')
+                navigate('/rides')
             })
             .catch((error) => {
                 setError("Invalid credentials. Please try again.");

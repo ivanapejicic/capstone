@@ -1,16 +1,17 @@
-import "./Profile.scss";
+import "./Rides.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
 
-function Profile() {
+function Rides() {
 	const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
 
-		if(!token) {
+		if (!token) {
 			return setFailedAuth(true)
 		}
 
@@ -46,7 +47,7 @@ function Profile() {
 		sessionStorage.removeItem("token");
 		setUser(null);
 		setFailedAuth(true);
-		
+
 	};
 
 	if (failedAuth) {
@@ -69,24 +70,27 @@ function Profile() {
 	}
 
 	return (
-		<main className="dashboard">
-			<h1 className="dashboard__title">Dashboard</h1>
+		<>
+			<HeaderProfile />
+			<main className="dashboard">
+				<h1 className="dashboard__title">Dashboard</h1>
 
-			<p>
-				Welcome back, {user.full_name}
-			</p>
+				<p>
+					Welcome back, {user.full_name}
+				</p>
 
-			<h2>My Profile</h2>
-			<p>User Name: {user.username}</p>
-			<p>Email: {user.email}</p>
-			<p>Phone: {user.phone_number}</p>
-			<p>Mini Bio: {user.mini_bio}</p>
+				<h2>My Profile</h2>
+				<p>User Name: {user.username}</p>
+				<p>Email: {user.email}</p>
+				<p>Phone: {user.phone_number}</p>
+				<p>Mini Bio: {user.mini_bio}</p>
 
-			<button className="dashboard__logout" onClick={handleLogout}>
-				Log out
-			</button>
-		</main>
+				<button className="dashboard__logout" onClick={handleLogout}>
+					Log out
+				</button>
+			</main>
+		</>
 	);
 }
 
-export default Profile;
+export default Rides;

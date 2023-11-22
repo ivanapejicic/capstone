@@ -1,0 +1,35 @@
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/mixin' as *;
+@use '../../styles/partials/variables' as *;
+
+.header {
+    background-color: $turquoise;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+
+    @include tablet{
+        padding: 1rem 7rem;
+    }
+    @include desktop{
+        padding: 1rem 15rem;
+
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
