@@ -1,3 +1,56 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variables' as *;
+
+.form {
+    width: 50%;
+    background-color: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+
+    &__label {
+        display: block;
+        margin-bottom: .5rem;
+    }
+
+    &__input {
+        width: 100%;
+        padding: .3rem;
+        margin-bottom: 2rem;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: .07rem solid $light-grey;
+        transition: border-bottom 0.3s ease;
+
+        &:focus {
+            border-bottom: .07rem solid $light-grey;
+        }
+        
+    }
+
+    &__select {
+        width: 100%;
+        padding: .3rem;
+        margin-bottom: 1rem;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: .07rem solid $light-grey;
+        transition: border-bottom 0.3s ease;
+
+        &:focus {
+            border-bottom: .07rem solid $light-grey;
+        }
+        
+    }
+
+    &__button {
+        background-color: $turquoise;
+        padding: .75rem;
+        border: none;
+        border-radius: .25rem;
+        cursor: pointer;
+    }
+}
