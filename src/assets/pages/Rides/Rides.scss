@@ -2,13 +2,18 @@
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variables' as *;
 
-.dashboard{
+.dashboard {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
 
+    @include tablet{
+        margin-top: 4rem;
+    }
+
 }
+
 .form-rides {
     width: 50%;
     background-color: #fff;
@@ -17,6 +22,7 @@
     display: flex;
     flex-direction: column;
     margin: 1rem;
+    margin-top: 1.5rem;
 
     &__group {
         display: flex;
@@ -41,7 +47,7 @@
         &:focus {
             border-bottom: .07rem solid $light-grey;
         }
-        
+
     }
 
     &__select {
@@ -57,7 +63,7 @@
         &:focus {
             border-bottom: .07rem solid $light-grey;
         }
-        
+
     }
 
     &__button {
@@ -71,6 +77,26 @@
         &:hover {
             background-color: $search-hover;
             color: $white;
+        }
+    }
+}
+
+.rides-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+
+    &__button {
+        border: none;
+        padding: .65rem;
+        margin: .5rem;
+        font-family: "the other one";
+        cursor: pointer;
+
+        &:hover {
+            background-color: $turquoise;
         }
     }
 }

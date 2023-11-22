@@ -78,6 +78,7 @@ function Rides() {
 			<HeaderProfile />
 			<main className="dashboard">
 				<h3>Welcome back, {user.full_name}</h3>
+				<p>Type your travel details below and find potential travel buddies.</p>
 				<div className="form-rides" id="search-form">
 					<input className='form-rides__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip' />
 
@@ -100,12 +101,20 @@ function Rides() {
 					</div>
 
 					<button className='form-rides__button' type="button" onClick={submitForm}>
-						Search 🚙 
+						Search 🚙
 					</button>
 				</div>
-				<button className="dashboard__logout" onClick={handleLogout}>
-					Log out
-				</button>
+				<div className="rides-buttons">
+					<div className='offer'>
+						<Link to='/offer'><button className="rides-buttons__button">Offer a ride</button></Link>
+					</div>
+					<div className='your-rides'>
+						<Link to='/your-rides'><button className="rides-buttons__button">Edit your existing rides</button></Link>
+					</div>
+					<button className="rides-buttons__button" onClick={handleLogout}>
+						Log out
+					</button>
+				</div>
 			</main>
 		</>
 	);
