@@ -74,18 +74,9 @@ function Rides() {
 		<>
 			<HeaderProfile />
 			<main className="dashboard">
-				<h1 className="dashboard__title">Dashboard</h1>
-
 				<p>
 					Welcome back, {user.full_name}
 				</p>
-				<Link to={{pathname: '/profile', state: {user:user},}}>Edit Profile</Link>
-				<h2>My Profile</h2>
-				<p>User Name: {user.username}</p>
-				<p>Email: {user.email}</p>
-				<p>Phone: {user.phone_number}</p>
-				<p>Mini Bio: {user.mini_bio}</p>
-				<Link to={'/profile/${user.id}'}>Edit</Link>
 				<button className="dashboard__logout" onClick={handleLogout}>
 					Log out
 				</button>

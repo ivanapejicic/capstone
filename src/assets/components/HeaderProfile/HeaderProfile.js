@@ -7,7 +7,7 @@ function HeaderProfile() {
             <Link to='/rides'><p className='header__title'>WePool</p></Link>
             <div className='header__buttons'>
                 <Link to='/rides'><p>Rides</p></Link>
-                <Link to='/profile'><p>Profile</p></Link>
+                <Link to='/profile/:id'><p>Profile</p></Link>
             </div>
         </div>
     );
