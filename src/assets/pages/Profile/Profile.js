@@ -18,6 +18,7 @@ function Profile() {
     const [user, setUser] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
     const [editMode, setEditMode] = useState(false);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token')
@@ -84,7 +85,6 @@ function Profile() {
         }
     };
 
-    console.log(user)
 
     const enterEditMode = () => {
         setEditMode(true);
@@ -97,7 +97,19 @@ function Profile() {
         return `${month}, ${year}`;
     };
 
-    // ... (previous code)
+    const handleDeleteConfirmation = async () => {
+        try {
+            await axios.delete(`http://localhost:8080/users/${id}`);
+            navigate('/'); 
+            alert("Sorry to see you go!");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleCancelDelete = () => {
+        setShowDeleteConfirmation(false);
+    };
 
     return (
         <>
@@ -215,6 +227,19 @@ function Profile() {
                             </button>
                         </div>
                     </form>
+                </div>
+            )}
+            <div>
+                <button onClick={() => setShowDeleteConfirmation(true)}>Delete Profile</button>
+            </div>
+
+            {showDeleteConfirmation && (
+                <div className="delete-confirmation">
+                    <p>Are you sure you want to delete your profile?</p>
+                    <div>
+                        <button onClick={handleDeleteConfirmation}>Yes</button>
+                        <button onClick={handleCancelDelete}>No</button>
+                    </div>
                 </div>
             )}
         </>
