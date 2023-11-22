@@ -77,30 +77,30 @@ function Rides() {
 		<>
 			<HeaderProfile />
 			<main className="dashboard">
-				<p>Welcome back, {user.full_name}</p>
-				<div className="form" id="search-form">
-					{/* <label className='form__label' htmlFor="starting-zip">Starting Zip:</label> */}
-					<input className='form__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip' />
+				<h3>Welcome back, {user.full_name}</h3>
+				<div className="form-rides" id="search-form">
+					<input className='form-rides__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip' />
 
-					{/* <label className='form__label' htmlFor="ending-zip">Ending Zip:</label> */}
-					<input className='form__input' type="text" id="ending-zip" name="ending-zip" placeholder="Ending Zip" />
+					<input className='form-rides__input' type="text" id="ending-zip" name="ending-zip" placeholder="Ending Zip" />
 
-					{/* <label className='form__label' htmlFor="departure-time">Departure Time:</label> */}
-					<input className='form__input' type="text" id="departure-time" name="departure-time" placeholder="Departure Time" />
-					<select className='form__select' id="departure-am-pm" name="departure-am-pm">
-						<option value="AM">AM</option>
-						<option value="PM">PM</option>
-					</select>
+					<div className="form-rides__group">
+						<input className='form-rides__input' type="text" id="departure-time" name="departure-time" placeholder="Departure Time" />
+						<select className='form-rides__select' id="departure-am-pm" name="departure-am-pm">
+							<option value="AM">🕕 AM</option>
+							<option value="PM">🕕 PM</option>
+						</select>
+					</div>
 
-					{/* <label className='form__label' htmlFor="return-time">Return Time:</label> */}
-					<input className='form__input' type="text" id="return-time" name="return-time" placeholder="Return Time" />
-					<select className='form__select' id="return-am-pm" name="return-am-pm">
-						<option value="AM">AM</option>
-						<option value="PM">PM</option>
-					</select>
+					<div className="form-rides__group">
+						<input className='form-rides__input' type="text" id="return-time" name="return-time" placeholder="Return Time" />
+						<select className='form-rides__select' id="return-am-pm" name="return-am-pm">
+							<option value="AM">🕕 AM</option>
+							<option value="PM">🕕 PM</option>
+						</select>
+					</div>
 
-					<button className='form__button' type="button" onClick={submitForm}>
-						Search
+					<button className='form-rides__button' type="button" onClick={submitForm}>
+						Search 🚙 
 					</button>
 				</div>
 				<button className="dashboard__logout" onClick={handleLogout}>

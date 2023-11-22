@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
 
     &::before {
         content: '';
@@ -36,8 +36,8 @@
         border-radius: .5rem;
         background-color: #fff;
         box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
-        z-index: 1; 
-
+        z-index: 1;
+        margin: 1rem;
         @include tablet {
             width: 20rem;
         }
