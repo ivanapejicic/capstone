@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Profile.scss';
 import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
@@ -110,6 +110,13 @@ function Profile() {
     const handleCancelDelete = () => {
         setShowDeleteConfirmation(false);
     };
+    const handleLogout = () => {
+		sessionStorage.removeItem("token");
+		setUser(null);
+		setFailedAuth(true);
+        alert("Logout Successful! 👋🔒");
+
+	};
 
     return (
         <>
@@ -229,16 +236,17 @@ function Profile() {
                     </form>
                 </div>
             )}
-            <div>
-                <button onClick={() => setShowDeleteConfirmation(true)}>Delete Profile</button>
+            <div className="button_container">
+                <button className='delete_button' onClick={() => setShowDeleteConfirmation(true)}>Delete Profile</button>
+                <Link to='/login'><button className="logout" onClick={handleLogout}>Log Out</button></Link>
             </div>
 
             {showDeleteConfirmation && (
                 <div className="delete-confirmation">
                     <p>Are you sure you want to delete your profile?</p>
                     <div>
-                        <button onClick={handleDeleteConfirmation}>Yes</button>
-                        <button onClick={handleCancelDelete}>No</button>
+                        <button className='delete_button' onClick={handleDeleteConfirmation}>Yes</button>
+                        <button className='delete_button' onClick={handleCancelDelete}>No</button>
                     </div>
                 </div>
             )}

@@ -98,5 +98,23 @@
             }
         }
         
-    }
+    }   
+}
+.button_container{
+    display: flex;
+    justify-content: center;
+}
+.delete_button,
+.logout{
+    border: none;
+    padding: .5rem;
+    margin: .5rem;
+    font-family: "the other one";
+
+}
+.delete-confirmation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
