@@ -3,12 +3,16 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
+import Trip from "../../components/Trip/Trip";
 
 function Rides() {
 	const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
 	const [trips, setTrips] = useState([]);
+	const [users, setUsers] = useState([]);
+	const [foundTrips, setFoundTrips] = useState([]);
 
+	//currently logged in user
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
 
@@ -37,31 +41,32 @@ function Rides() {
 				},
 			})
 			.then((response) => {
-				console.log('user auth', response);
+				setUsers(response.data);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
 
+	// all trips
 	useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/trips");
-                console.log(response.data); 
-                setTrips(response.data); 
-            } catch (error) {
-                console.error('Error fetching trips data:', error);
-            }
-        };
+		const fetchData = async () => {
+			try {
+				const response = await axios.get("http://localhost:8080/trips");
+				setTrips(response.data);
+			} catch (error) {
+				console.error('Error fetching trips data:', error);
+			}
+		};
 
-        fetchData();
-    }, []);
+		fetchData();
+	}, []);
 
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
 		setUser(null);
 		setFailedAuth(true);
+		alert("Logout Successful! 👋🔒");
 
 	};
 
@@ -83,9 +88,18 @@ function Rides() {
 			</main>
 		);
 	}
-	function submitForm() {
-		console.log('Form submitted!');
-	}
+	// form data
+	const handleSearch = (event) => {
+		event.preventDefault();
+		const startingZip = event.target.starting_zip.value;
+		const endingZip = event.target.ending_zip.value;
+
+		const filteredTrips = trips.filter((trip) => {
+			return trip.start_location === startingZip && trip.end_location === endingZip;
+		});
+
+		setFoundTrips(filteredTrips);
+	};
 
 	return (
 		<>
@@ -93,14 +107,27 @@ function Rides() {
 			<main className="dashboard">
 				<h2>Welcome back, {user.full_name}</h2>
 				<h3>Type your travel details below and find potential travel buddies.</h3>
-				<div className="form-rides" id="search-form">
-					<input className='form-rides__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip Code' />
+				<form className="form-rides" id="search-form" onSubmit={handleSearch}>
+					<input
+						className='form-rides__input'
+						type="text" id="starting_zip"
+						name="starting_zip"
+						placeholder='Starting Zip Code'
+					/>
 
-					<input className='form-rides__input' type="text" id="ending-zip" name="ending-zip" placeholder="Ending Zip" />
+					<input
+						className='form-rides__input'
+						type="text" id="ending_zip"
+						name="ending_zip"
+						placeholder="Ending Zip"
+					/>
 
 					<div className="form-rides__group">
 						<label htmlFor="departure-time">Departure Time</label>
-						<select className="form-rides__select" id="departure-time" name="departure-time">
+						<select
+							className="form-rides__select"
+							id="departure-time"
+							name="departure-time">
 							{Array.from({ length: 24 }, (_, i) => (
 								<option key={i} value={i}>
 									{i < 10 ? `0${i}:00` : `${i}:00`}
@@ -111,7 +138,10 @@ function Rides() {
 
 					<div className="form-rides__group">
 						<label htmlFor="return-time">Return Time</label>
-						<select className="form-rides__select" id="return-time" name="return-time">
+						<select
+							className="form-rides__select"
+							id="return-time"
+							name="return-time">
 							{Array.from({ length: 24 }, (_, i) => (
 								<option key={i} value={i}>
 									{i < 10 ? `0${i}:00` : `${i}:00`}
@@ -121,14 +151,28 @@ function Rides() {
 					</div>
 
 
-					<button className='form-rides__button' type="button" onClick={submitForm}>
+					<button className='form-rides__button' type="submit">
 						Search 🚙
 					</button>
-					<button className="form-rides__button">
+
+				</form>
+				{foundTrips.length > 0 && (
+					<div className='dashboard__results'>
+						<h3>Found Trips:</h3>
+						<ul>
+							{foundTrips.map((trip) => (
+								<div key={trip.trip_id}>
+									<Trip users={users} user={user} trip={trip} />
+								</div>
+
+							))}
+						</ul>
+					</div>
+				)}
+				<div className="rides-buttons">
+					<button className="rides-buttons__button">
 						Offer a ride  🚙
 					</button>
-				</div>
-				<div className="rides-buttons">
 					<div className='your-rides'>
 						<Link to='/your-rides'><button className="rides-buttons__button">Edit your existing rides</button></Link>
 					</div>
