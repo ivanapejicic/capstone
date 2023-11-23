@@ -7,6 +7,7 @@ import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
 function Rides() {
 	const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
+	const [trips, setTrips] = useState([]);
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
@@ -43,6 +44,20 @@ function Rides() {
 			});
 	}, []);
 
+	useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8080/trips");
+                console.log(response.data); 
+                setTrips(response.data); 
+            } catch (error) {
+                console.error('Error fetching trips data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
 		setUser(null);
@@ -72,7 +87,6 @@ function Rides() {
 		console.log('Form submitted!');
 	}
 
-
 	return (
 		<>
 			<HeaderProfile />
@@ -80,7 +94,7 @@ function Rides() {
 				<h2>Welcome back, {user.full_name}</h2>
 				<h3>Type your travel details below and find potential travel buddies.</h3>
 				<div className="form-rides" id="search-form">
-					<input className='form-rides__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip' />
+					<input className='form-rides__input' type="text" id="starting-zip" name="starting-zip" placeholder='Starting Zip Code' />
 
 					<input className='form-rides__input' type="text" id="ending-zip" name="ending-zip" placeholder="Ending Zip" />
 

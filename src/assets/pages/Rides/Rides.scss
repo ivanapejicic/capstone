@@ -9,7 +9,7 @@
     margin-top: 2rem;
 
     @include tablet{
-        margin-top: 4rem;
+        margin-top: 8rem;
     }
 
 }
@@ -23,6 +23,10 @@
     flex-direction: column;
     margin: 1rem;
     margin-top: 2rem;
+
+    @include desktop {
+        width: 30%;
+    }
 
     &__group {
         display: flex;
@@ -68,17 +72,19 @@
     }
 
     &__button {
-        background-color: $turquoise;
-        padding: .75rem;
+        background-color: $light-grey;
+        padding: .65rem;
         border: none;
         border-radius: .25rem;
         cursor: pointer;
         font-family: "another one";
         margin-top: 1rem;
+        width: 100%;
+
 
         &:hover {
-            background-color: $search-hover;
-            color: $white;
+            background-color: $turquoise;
+            font-weight: bold;
         }
     }
 }
@@ -100,6 +106,8 @@
 
         &:hover {
             background-color: $turquoise;
+            font-weight: bold;
+
         }
     }
 }

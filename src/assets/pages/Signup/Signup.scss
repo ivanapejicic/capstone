@@ -3,12 +3,12 @@
 @use '../../styles/partials/variables' as *;
 
 .signup {
+    box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
 
     &::before {
         content: '';
@@ -18,9 +18,9 @@
         bottom: 0;
         left: 0;
         background-image: url('../../images/home.jpeg');
-        background-size: cover;
-        background-position: center;
-        opacity: 0.5;
+        background-size:contain;
+        background-position: center center;
+        opacity: 0.4;
     }
 
     &__title {
@@ -38,12 +38,13 @@
         box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
         z-index: 1;
         margin: 1rem;
+        margin-top: 5rem;
         @include tablet {
             width: 20rem;
         }
 
         @include desktop {
-            width: 22rem;
+            width: 27rem;
         }
         
         &__arrow {

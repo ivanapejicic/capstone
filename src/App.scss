@@ -2,6 +2,11 @@
 @use '../src/assets/styles/partials/mixin' as *;
 @use '../src/assets/styles/partials/variables' as *;
 
+html {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   padding: 0;
   margin: 0;
