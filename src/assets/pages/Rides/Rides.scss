@@ -2,42 +2,74 @@
 @use '../../styles/partials/mixin' as *;
 @use '../../styles/partials/variables' as *;
 
+
 .dashboard {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
+    justify-content: center;
 
-    @include tablet{
-        margin-top: 8rem;
+    @include desktop{
+        gap: 3rem;
     }
-    &__results{
-        display:flex;
+
+    @include tablet {
+        margin-top: 6rem;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+
+        @include tablet{
+            font-size: 2rem;
+        }
+    }
+
+    &__subtitle {
+        font-size: 1rem;
+        margin: .5rem 2rem 0;
+
+        @include tablet{
+            font-size: 1.7rem;
+            margin: .5rem 5rem 0;
+
+        }
+    }
+
+    &__results {
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 50%;
-        padding: 1.5rem;
-        box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.1);
+        width: 100%;
         margin: 1rem;
+
         @include desktop {
-            width: 30%;
+            width: 50%;
+        }
+
+        &-container {
+            width: 50%;
         }
     }
 }
 
 .form-rides {
-    width: 50%;
+    width: 65%;
     background-color: #fff;
     padding: 1.5rem;
-    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     margin: 1rem;
     margin-top: 2rem;
+    border-radius: .625rem;
+    font-size: .75rem;
 
-    @include desktop {
-        width: 30%;
+    @include tablet {
+        width: 40%;
+        font-size: 1.2rem;
     }
 
     &__group {
@@ -85,13 +117,14 @@
 
     &__button {
         background-color: $light-grey;
-        padding: .65rem;
+        padding: .5rem;
         border: none;
         border-radius: .25rem;
         cursor: pointer;
         font-family: "another one";
         margin-top: 1rem;
         width: 100%;
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 
 
         &:hover {
@@ -110,12 +143,16 @@
 
     &__button {
         border: none;
-        padding: .65rem;
+        padding: .75rem;
         margin: .5rem;
         font-family: "the other one";
         cursor: pointer;
-        
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 
+        @include tablet{
+            padding: 1rem;
+        }
+        
         &:hover {
             background-color: $turquoise;
             font-weight: bold;

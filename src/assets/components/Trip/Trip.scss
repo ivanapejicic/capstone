@@ -6,29 +6,51 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-bottom: 1px solid $light-grey;
+    border: 1px solid $light-grey;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 .25rem .5rem rgba(0, 0, 0, 0.5);
     margin: 1rem 0;
+    transition: transform 0.3s ease, cursor 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
 
     &__info {
         font-size: 1rem;
         display: flex;
-        align-items:center;
-        justify-content: center;
-        gap: 7rem;
+        align-items: center;
+        justify-content: space-between;
         font-weight: bold;
-        &-time {
-            font-size: 1rem; 
+        padding: .25rem 0;
+        font-size: .85rem;
+
+        @include tablet{
+            font-size: 1.3rem;
+            gap: 6rem;
+
+        }
+        &-time,
+        &-location{
+            display: flex;
         }
 
-        &-location {
-            font-size: 1.2rem; 
-        }
     }
-    &__profile{
+
+    &__profile {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.75rem;
+        font-size: .75rem;
+        margin: .5rem 0 0;        
+
+        @include tablet{
+            margin: 1.3rem 1rem 1rem;        
+            font-size: 1.2rem;
+        }
+
     }
 
-    
+
 }

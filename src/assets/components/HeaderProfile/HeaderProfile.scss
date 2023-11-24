@@ -12,10 +12,14 @@
     font-size: 1.5rem;
 
     @include tablet{
-        padding: 1rem 7rem;
+        padding: 1.5rem 7rem;
+        font-size: 1.75rem;
+
     }
     @include desktop{
-        padding: 1rem 15rem;
+        padding: 2.5rem 15rem;
+        font-size: 2rem;
+
 
     }
 

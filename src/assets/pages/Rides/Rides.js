@@ -105,8 +105,8 @@ function Rides() {
 		<>
 			<HeaderProfile />
 			<main className="dashboard">
-				<h2>Welcome back, {user.full_name}</h2>
-				<h3>Type your travel details below and find potential travel buddies.</h3>
+				<h1 className="dashboard__title">Welcome back, {user.full_name}</h1>
+				<h2 className="dashboard__subtitle">Type your travel details below and find potential travel buddies.</h2>
 				<form className="form-rides" id="search-form" onSubmit={handleSearch}>
 					<input
 						className='form-rides__input'
@@ -159,7 +159,7 @@ function Rides() {
 				{foundTrips.length > 0 && (
 					<div className='dashboard__results'>
 						<h3>Found Trips:</h3>
-						<ul>
+						<ul className='dashboard__results-container'>
 							{foundTrips.map((trip) => (
 								<div key={trip.trip_id}>
 									<Trip users={users} user={user} trip={trip} />

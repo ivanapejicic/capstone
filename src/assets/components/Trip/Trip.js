@@ -24,19 +24,19 @@ function Trip({ users, user, trip }) {
     return (
         <div className='trip'>
             <div className='trip__info'>
-                <p className='trip__info-time'>{formatTime(trip.departure_time)}</p>
-                <p className='trip__info-location'>{trip.start_location}</p>
+                <p className='trip__info-time'>Leaving at: {formatTime(trip.departure_time)}</p>
+                <p className='trip__info-location'>From: {trip.start_location}</p>
             </div>
             <div className='trip__info'>
-                <p className='trip__info-time'>{formatTime(trip.return_time)}</p>
-                <p className='trip__info-location'>{trip.end_location}</p>
+                <p className='trip__info-time'>Returning at: {formatTime(trip.return_time)}</p>
+                <p className='trip__info-location'>To: {trip.end_location}</p>
             </div>
             <div className='trip__profile'>
                 <img src={userIcon} alt='icon for user profile'></img>
                 {associatedUser && (
                     <>
                         <p>{`By: ${associatedUser.full_name}`}</p>
-                        <Link to='#' onClick={openProfileModal} style={{ color: 'turquoise',textDecoration: 'underline' }}>
+                        <Link to='#' onClick={openProfileModal} style={{ color: '#3498db',textDecoration: 'underline' }}>
                             Info
                         </Link>
 
