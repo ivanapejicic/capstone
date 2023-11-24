@@ -11,6 +11,11 @@ function Rides() {
 	const [trips, setTrips] = useState([]);
 	const [users, setUsers] = useState([]);
 	const [foundTrips, setFoundTrips] = useState([]);
+	const [action, setAction] = useState('search');
+	const [notification, setNotification] = useState(null);
+
+
+	const formattedTime = (time) => (time < 10 ? `0${time}:00:00` : `${time}:00:00`);
 
 	//currently logged in user
 	useEffect(() => {
@@ -89,25 +94,49 @@ function Rides() {
 		);
 	}
 	// form data
-	const handleSearch = (event) => {
-		event.preventDefault();
-		const startingZip = event.target.starting_zip.value;
-		const endingZip = event.target.ending_zip.value;
-
-		const filteredTrips = trips.filter((trip) => {
-			return trip.start_location === startingZip && trip.end_location === endingZip;
-		});
-
-		setFoundTrips(filteredTrips);
+	const handleActionChange = (event) => {
+		setAction(event.target.value);
 	};
-	
+
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
+
+		if (action === 'search') {
+			const startingZip = event.target.starting_zip.value;
+			const endingZip = event.target.ending_zip.value;
+
+			const filteredTrips = trips.filter((trip) => {
+				return trip.start_location === startingZip && trip.end_location === endingZip;
+			});
+
+			setFoundTrips(filteredTrips);
+		} else if (action === 'offer') {
+			try {
+				axios.post("http://localhost:8080/trips", {
+					start_location: event.target.starting_zip.value,
+					end_location: event.target.ending_zip.value,
+					departure_time: formattedTime(event.target.departure_time.value),
+					return_time: formattedTime(event.target.return_time.value),
+					user_id: user.user_id
+				});
+				setNotification('Ride posted successfully!');
+				setFoundTrips([]);
+
+			} catch (error) {
+				console.error('Error offering trip:', error);
+				setNotification('Failed to post ride. Please try again.');
+			}
+		}
+	};
+
+
 	return (
 		<>
 			<HeaderProfile />
 			<main className="dashboard">
 				<h1 className="dashboard__title">Welcome back, {user.full_name}</h1>
 				<h2 className="dashboard__subtitle">Type your travel details below and find potential travel buddies.</h2>
-				<form className="form-rides" id="search-form" onSubmit={handleSearch}>
+				<form className="form-rides" id="search-form" onSubmit={handleFormSubmit}>
 					<input
 						className='form-rides__input'
 						type="text" id="starting_zip"
@@ -126,8 +155,8 @@ function Rides() {
 						<label htmlFor="departure-time">Departure Time</label>
 						<select
 							className="form-rides__select"
-							id="departure-time"
-							name="departure-time">
+							id="departure_time"
+							name="departure_time">
 							{Array.from({ length: 24 }, (_, i) => (
 								<option key={i} value={i}>
 									{i < 10 ? `0${i}:00` : `${i}:00`}
@@ -140,8 +169,8 @@ function Rides() {
 						<label htmlFor="return-time">Return Time</label>
 						<select
 							className="form-rides__select"
-							id="return-time"
-							name="return-time">
+							id="return_time"
+							name="return_time">
 							{Array.from({ length: 24 }, (_, i) => (
 								<option key={i} value={i}>
 									{i < 10 ? `0${i}:00` : `${i}:00`}
@@ -149,13 +178,43 @@ function Rides() {
 							))}
 						</select>
 					</div>
+					<div className="form-rides__group">
+						<label>Action:</label>
+						<label>
+							<input
+								type="radio"
+								name="action"
+								value="search"
+								checked={action === 'search'}
+								onChange={handleActionChange}
+							/>
+							Search
+						</label>
+						<label>
+							<input
+								type="radio"
+								name="action"
+								value="offer"
+								checked={action === 'offer'}
+								onChange={handleActionChange}
+							/>
+							Offer
+						</label>
+					</div>
 
 
 					<button className='form-rides__button' type="submit">
-						Search 🚙
+						{action === 'search' ? 'Search 🚙' : 'Offer 🚗'}
 					</button>
 
 				</form>
+
+				{action === 'search' && foundTrips.length === 0 && (
+					<div className="no-matching-rides">
+						<p>Sorry, no matching rides. Try adjusting your search criteria.</p>
+					</div>
+				)}
+
 				{foundTrips.length > 0 && (
 					<div className='dashboard__results'>
 						<h3>Found Trips:</h3>
@@ -169,10 +228,13 @@ function Rides() {
 						</ul>
 					</div>
 				)}
+
+				{notification && (
+					<div className="notification">
+						<p>{notification}</p>
+					</div>
+				)}
 				<div className="rides-buttons">
-					<button className="rides-buttons__button">
-						Offer a ride  🚙
-					</button>
 					<div className='your-rides'>
 						<Link to='/your-rides'><button className="rides-buttons__button">Edit your existing rides</button></Link>
 					</div>
