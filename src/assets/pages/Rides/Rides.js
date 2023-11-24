@@ -209,11 +209,11 @@ function Rides() {
 
 				</form>
 
-				{action === 'search' && foundTrips.length === 0 && (
+				{/* {foundTrips.length === 0 && (
 					<div className="no-matching-rides">
 						<p>Sorry, no matching rides. Try adjusting your search criteria.</p>
 					</div>
-				)}
+				)} */}
 
 				{foundTrips.length > 0 && (
 					<div className='dashboard__results'>
