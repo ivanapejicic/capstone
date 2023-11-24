@@ -100,7 +100,7 @@ function Rides() {
 
 		setFoundTrips(filteredTrips);
 	};
-
+	
 	return (
 		<>
 			<HeaderProfile />
