@@ -237,7 +237,7 @@ function Rides() {
 				)}
 				<div className="rides-buttons">
 					<div className='your-rides'>
-						<Link to='/your-rides'><button className="rides-buttons__button">Edit your existing rides</button></Link>
+						<Link to='/profile/:id'><button className="rides-buttons__button">Edit your existing rides</button></Link>
 					</div>
 					<button className="rides-buttons__button" onClick={handleLogout}>
 						Log out

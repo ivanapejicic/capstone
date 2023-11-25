@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Profile.scss';
+import format from 'date-fns/format';
 import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
 import logo from '../../icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg';
 import edit from '../../icons/edit_FILL0_wght400_GRAD0_opsz24.svg';
+import del from '../../icons/delete_FILL0_wght400_GRAD0_opsz24.svg';
 
 function Profile() {
     const navigate = useNavigate()
@@ -19,6 +21,12 @@ function Profile() {
     const [failedAuth, setFailedAuth] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [trips, setTrips] = useState([]);
+
+    const formatTime = (timeString) => {
+        const parsedTime = new Date(`1970-01-01T${timeString}Z`);
+        return format(parsedTime, 'HH:mm');
+    };
 
     useEffect(() => {
         const token = sessionStorage.getItem('token')
@@ -96,7 +104,7 @@ function Profile() {
     const handleDeleteConfirmation = async () => {
         try {
             await axios.delete(`http://localhost:8080/users/${id}`);
-            navigate('/'); 
+            navigate('/');
             alert("Sorry to see you go!");
         } catch (error) {
             console.error(error);
@@ -107,12 +115,42 @@ function Profile() {
         setShowDeleteConfirmation(false);
     };
     const handleLogout = () => {
-		sessionStorage.removeItem("token");
-		setUser(null);
-		setFailedAuth(true);
+        sessionStorage.removeItem("token");
+        setUser(null);
+        setFailedAuth(true);
         alert("Logout Successful! 👋🔒");
 
-	};
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8080/trips");
+                setTrips(response.data);
+            } catch (error) {
+                console.error('Error fetching trips data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const myTrips = trips.filter((trip) => {
+        return trip.user_id === id;
+    });
+    const handleDeleteTrips = (id) => {
+
+        const deleteTrip = async () => {
+            try {
+                const response = await axios.delete(`http://localhost:8080/trips/${id}`);
+                const updatedTrips = trips.filter((trip) => trip.trip_id !== id);
+                setTrips(updatedTrips);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        deleteTrip();
+    }
 
     return (
         <>
@@ -232,6 +270,31 @@ function Profile() {
                     </form>
                 </div>
             )}
+            {myTrips.length === 0 && (
+                <div className="no-offered-trips">
+                    <p>You didn't offer any trips yet. <Link to='/rides'>Offer here</Link></p>
+                </div>
+            )}
+            {myTrips.length > 0 && (
+                <div className='my-trips'>
+                    <h3 className='my-trips__title'>Your Trips:</h3>
+                    <ul className='my-trips__container'>
+                        {myTrips.map((trip) => (
+                            <li className='my-trips__container-item' key={trip.trip_id}>
+                                From: {trip.start_location} at {formatTime(trip.departure_time)} - {trip.end_location} at {formatTime(trip.return_time)}
+                                <div onClick={() => { handleDeleteTrips(trip.trip_id) }} style={{ cursor: 'pointer' }}>
+                                    <img
+                                        className="delete-icon"
+                                        src={del}
+                                        alt="icon of a trash can for user to click and delte specific trip"
+                                    />
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
             <div className="button_container">
                 <button className='delete_button' onClick={() => setShowDeleteConfirmation(true)}>Delete Profile</button>
                 <Link to='/login'><button className="logout" onClick={handleLogout}>Log Out</button></Link>

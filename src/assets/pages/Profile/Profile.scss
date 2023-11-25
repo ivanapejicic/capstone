@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $turquoise;
-    margin: 4rem 3rem;
+    margin: 4rem 3rem 1rem;
     padding-bottom: 1rem;
 
     @include tablet {
@@ -14,14 +14,15 @@
     }
 
     @include desktop {
-        margin: 8rem 15rem;
+        margin: 4rem 15rem ;
         align-items: center;
     }
 
     &__left {
         &-text {
             font-size: 1.3rem;
-            @include desktop{
+
+            @include desktop {
                 font-size: 1.75rem;
             }
         }
@@ -111,6 +112,7 @@
 .button_container {
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .delete_button,
@@ -134,4 +136,39 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.my-trips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid $turquoise;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    &__title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+
+        @include desktop {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__container {
+        list-style: none;
+        padding: 0;
+
+        &-item {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+
+            @include desktop {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
 }
