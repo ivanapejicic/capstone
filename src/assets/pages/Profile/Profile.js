@@ -289,13 +289,6 @@ function Profile() {
                                         alt="icon of a trash can for user to click and delte specific trip"
                                     />
                                 </div>
-                                {/* <Link to={`/update-trip/${trip.trip_id}`}>
-                                    <img
-                                        src={edit}
-                                        alt="icon showing a pen and giving an option of edit"
-                                        style={{ cursor: 'pointer' }}
-                                    />
-                                </Link> */}
                             </li>
                         ))}
                     </ul>

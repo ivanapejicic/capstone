@@ -239,9 +239,8 @@ function Rides() {
 					<div className='your-rides'>
 						<Link to='/profile/:id'><button className="rides-buttons__button">Edit your existing rides</button></Link>
 					</div>
-					<button className="rides-buttons__button" onClick={handleLogout}>
-						Log out
-					</button>
+					<Link to='/login'><button className="rides-buttons__button" onClick={handleLogout}>Log Out</button></Link>
+					
 				</div>
 			</main>
 		</>
