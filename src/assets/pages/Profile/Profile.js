@@ -55,10 +55,6 @@ function Profile() {
         setPhone(event.target.value);
     }
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    }
-
     const handleBioChange = (event) => {
         setBio(event.target.value);
     }
@@ -133,7 +129,7 @@ function Profile() {
                         <img
                             className="info__right-icon"
                             src={logo}
-                            alt="user icon used as an image replacement"
+                            alt="user icon to show that this is user's profile"
                         />
                     </div>
                 </div>

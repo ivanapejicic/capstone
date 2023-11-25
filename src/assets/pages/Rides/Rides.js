@@ -13,7 +13,7 @@ function Rides() {
 	const [foundTrips, setFoundTrips] = useState([]);
 	const [action, setAction] = useState('search');
 	const [notification, setNotification] = useState(null);
-
+	const [formSubmitted, setFormSubmitted] = useState(false);
 
 	const formattedTime = (time) => (time < 10 ? `0${time}:00:00` : `${time}:00:00`);
 
@@ -78,10 +78,10 @@ function Rides() {
 	if (failedAuth) {
 		return (
 			<main className="dashboard">
-				<p>You must be logged in to see this page.</p>
-				<p>
+				<h1>You must be logged in to see this page.</h1>
+				<h2>
 					<Link to="/login">Log in</Link>
-				</p>
+				</h2>
 			</main>
 		);
 	}
@@ -100,6 +100,7 @@ function Rides() {
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
+		setFormSubmitted(true);
 
 		if (action === 'search') {
 			const startingZip = event.target.starting_zip.value;
@@ -209,11 +210,11 @@ function Rides() {
 
 				</form>
 
-				{/* {foundTrips.length === 0 && (
+				{formSubmitted && action === 'search' && foundTrips.length === 0 && (
 					<div className="no-matching-rides">
 						<p>Sorry, no matching rides. Try adjusting your search criteria.</p>
 					</div>
-				)} */}
+				)}
 
 				{foundTrips.length > 0 && (
 					<div className='dashboard__results'>
