@@ -7,6 +7,7 @@ import Login from './assets/pages/Login/Login';
 import Signup from './assets/pages/Signup/Signup';
 import Rides from './assets/pages/Rides/Rides';
 import Profile from './assets/pages/Profile/Profile';
+import UpdateTrip from './assets/pages/UpdateTrip/UpdateTrip';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path= '/signup' element={<Signup />} /> 
           <Route path='/rides'  element={<Rides />} />
           <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/update-trip/:id' element={<UpdateTrip />} />
+
         </Routes>      
       </BrowserRouter>
     </div>
