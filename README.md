@@ -16,18 +16,15 @@ WePool's user base will be diverse and could include individuals traveling for w
 ### Features
 
 1. **User Registration and Profiles**
-        - Users can create accounts with their personal information and profile pictures.
-        - Users can set their travel preferences, including their regular commuting routes, travel purposes (work, school, leisure), and preferred travel times.
+        - Users can create accounts with their personal information.
+        - Users can set their travel preferences, including their regular commuting routes and preferred travel times.
 
 2. **Trip Creation and Search**
-        - Users can create a new trip listing, specifying the starting point, destination, and date/time of travel.
-        - Users can search for available trips based on their travel criteria, such as destination, time, and travel purpose.
+        - Users can create a new trip listing, specifying the starting point, destination, and time of travel.
+        - Users can search for available trips based on their travel criteria
 
 3. **Ride Matching**
-        - The app should provide a matching algorithm that suggests potential ride matches based on user criteria, including travel route, time, and travel purpose.
-
-4. **Safety and Verification**
-        - Riders will be asked to conduct background checks to enhance safety and trust within the WePool community.
+        - The app should provide a matching algorithm that suggests potential ride matches based on user criteria, including travel route and time
 
 
 ## Implementation
@@ -44,15 +41,12 @@ WePool's user base will be diverse and could include individuals traveling for w
 
 5. **Styling:** Sass for maintainable and structured styles.
 
-### APIs
-
-WePool will integrate with external APIs, including Google Maps for route optimization and mapping.
 
 ### Sitemap
 
 1. **Home:** Overview of the app's purpose and features.
 
-2. **Profile:** User details, preferences, and trip history.
+2. **Profile:** User details, preferences, and trips.
 
 3. **Create Trip:** Form for entering trip details.
 
@@ -60,51 +54,61 @@ WePool will integrate with external APIs, including Google Maps for route optimi
 
 5. **Matched Trips:** Displays confirmed matches.
 
-6. **Safety Checks:** Verification processes for user safety.
 
 ### Mockups
 
-![Home Page](./src/assets/mockup/homePage.png)
-![Sign Up](./src/assets/mockup/form.png)
-![Log in](./src/assets/mockup/login.png)
-![Search Trips](./src/assets/mockup/search_trips.png)
-![Search Results](./src/assets/mockup/search_results.png)
-![Found the one](./src/assets/mockup/matched.png)
+![Home Page](./src/assets/mockup/homePage.png)<br><br>
+![Sign Up](./src/assets/mockup/form.png)<br><br>
+![Log in](./src/assets/mockup/login.png)<br><br>
+![Search Trips](./src/assets/mockup/search_trips.png)<br><br>
+![Search Results](./src/assets/mockup/search_results.png)<br><br>
+![Found the one](./src/assets/mockup/matched.png)<br><br>
 ![User Profile](./src/assets/mockup/user_profile.png)
 
 
 ### Data
 
-- **Users:** Storing user information, preferences, and safety check data.
+- **Users:** Storing user information
 
 - **Trips:** Details about created trips, including start, end, and return times.
 
 ### Endpoints
 
 1. **Register a New User**
-        - Endpoint: POST /user/register
-        - Parameters: username (string), email (string), password (string)
-        - Example Response: {"message": "User registered successfully", "userId": "123"}
+        - Endpoint: POST `/users/register`
+        - Parameters: `username` (string), `email` (string), `password` (string), `full name` (string), `phone number` (string), and `mini bio` (string)
+        - Example Response: {"Signed Up! Go to Login"}
 
-2. **Create a New Trip Listing**
-        - Endpoint: POST /trip/create
-        - Parameters: startLocation (string), endLocation (string), departureTime (datetime), returnTime (datetime, optional)
-        - Example Response: {"message": "Trip created successfully", "tripId": "456"}
+2. **Login Existing User**
+        - Endpoint: POST `/users/login`
+        - Parameters: `username` (string), `password` (string)
+        - Example Response: Redirects user to their profile.
 
-3. **Retrieve Available Trips**
-        - Endpoint: GET /trip/search
-        - Parameters: destination (string), time (datetime)
-        - Example Response: {"trips": [{"tripId": "456", "startLocation": "A", "endLocation": "B", "departureTime": "2023-01-01T08:00:00Z"}]}
+3. **User's Profile When Logged In**
+        - Endpoint: GET `/users/current`
+        - Retrieves information for the currently logged-in user.
 
-4. **Initiate the Ride-Matching Process**
-        - Endpoint: POST /trip/match
-        - Parameters: tripId (string)
-        - Example Response: {"message": "Matching in progress", "matches": ["user1", "user2"]}
+4. **Edit Profile for Currently Logged In User**
+        - Endpoint: PUT `/users/:id`
+        - Parameters: `username` (string), `email` (string), `password` (string), `phone number` (string) and `mini bio` (string)
 
-5. **Conduct Background Checks for User Safety**
-        - Endpoint: GET /safety/check
-        - Parameters: userId (string)
-        - Example Response: {"status": "Clear", "message": "User has passed safety checks"}
+5. **Delete Profile for Currently Logged In User**
+        - Endpoint: DELETE `/users/:id`
+        - Users can delete their profiles if they no longer wish to use the app.
+
+6. **Trips Available**
+        - Endpoint: GET `/trips`
+        - Retrieves all available/posted trips from the database.
+        - Can be filtered to provide matching trips based on user input.
+        
+7. **Initiate the Ride-Matching Process**
+        - Endpoint: POST `/trips`
+        - Parameters: `start` and `end` locations, `departure` and `return` times, `user_id` - currently logged in user 
+        - Example Response: {'Ride posted successfully!'}
+
+8. **Deleting Trip**
+        - Endpoint: DELETE `/trips/:id`
+        - Users can delete trips they no longer want to offer.
 
 ### Auth
 
@@ -115,27 +119,25 @@ WePool will integrate with external APIs, including Google Maps for route optimi
 **Sprint Plan (14 Days)**
         
 - Days 1-2 (11/15 - 11/16): Project Setup and UI
-    - Set up the project structure and version control (e.g., Git).
-    -  Initialize the React Native project.
+    - Set up the project structure and version control (GitHub)
+    -  Initialize the React project.
     - Create basic UI components for the home and user registration screens.
     - Begin styling with Sass.
 
 - Days 3-4 (11/17 - 11/18): User Registration and Authentication
-    - Implement user registration functionality (POST /user/register).
+    - Implement user registration functionality (POST /users/register).
     - Integrate JWT authentication for secure user access.
     - Create UI components for user registration and authentication.
     - Implement basic error handling for registration.
         
 - Days 5-7 (11/19 - 11/21): Trip Functionality
-    - Implement trip creation functionality (POST /trip/create).
+    - Implement trip creation functionality (POST /trips).
     - Develop UI components for creating and searching trips.
-    - Implement basic trip matching logic (POST /trip/match).
+    - Implement basic trip matching logic (POST /trips).
     - Create trip cards and trip listing components.
 
 - Days 8-10 (11/22 - 11/24): Refinement and Testing
     - Complete trip matching logic and refine algorithms.
-    - mplement safety checks (GET /safety/check).
-    - Conduct thorough testing of user registration, authentication, and trip creation.
     - Refine UI elements and address any issues identified during testing.
 
 - Days 11-12 (11/25 - 11/26): Finalization
