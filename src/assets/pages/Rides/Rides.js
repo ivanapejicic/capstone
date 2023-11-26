@@ -1,5 +1,6 @@
 import "./Rides.scss";
 import axios from "axios";
+import API_URL from '../../../utils';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
@@ -26,7 +27,7 @@ function Rides() {
 		}
 
 		axios
-			.get("http://localhost:8080/users/current", {
+			.get(`${API_URL}/users/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -40,7 +41,7 @@ function Rides() {
 			})
 
 		axios
-			.get("http://localhost:8080/users", {
+			.get(`${API_URL}/users`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -57,7 +58,7 @@ function Rides() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get("http://localhost:8080/trips");
+				const response = await axios.get(`${API_URL}/trips`);
 				setTrips(response.data);
 			} catch (error) {
 				console.error('Error fetching trips data:', error);
@@ -113,7 +114,7 @@ function Rides() {
 			setFoundTrips(filteredTrips);
 		} else if (action === 'offer') {
 			try {
-				axios.post("http://localhost:8080/trips", {
+				axios.post(`${API_URL}/trips`, {
 					start_location: event.target.starting_zip.value,
 					end_location: event.target.ending_zip.value,
 					departure_time: formattedTime(event.target.departure_time.value),
@@ -134,6 +135,7 @@ function Rides() {
 	return (
 		<>
 			<HeaderProfile />
+			
 			<main className="dashboard">
 				<h1 className="dashboard__title">Welcome back, {user.full_name}</h1>
 				<h2 className="dashboard__subtitle">Type your travel details below and find potential travel buddies.</h2>

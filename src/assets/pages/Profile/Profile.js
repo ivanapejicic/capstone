@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from '../../../utils';
 import './Profile.scss';
 import format from 'date-fns/format';
 import HeaderProfile from "../../components/HeaderProfile/HeaderProfile";
@@ -36,7 +37,7 @@ function Profile() {
         }
 
         axios
-            .get("http://localhost:8080/users/current", {
+            .get(`${API_URL}/users/current`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -77,7 +78,7 @@ function Profile() {
                 mini_bio: bio || user.mini_bio,
             };
 
-            const response = await axios.put(`http://localhost:8080/users/${id}`, updatedData);
+            const response = await axios.put(`${API_URL}/users/${id}`, updatedData);
 
             setUser(response.data);
             setEditMode(false);
@@ -103,7 +104,7 @@ function Profile() {
 
     const handleDeleteConfirmation = async () => {
         try {
-            await axios.delete(`http://localhost:8080/users/${id}`);
+            await axios.delete(`${API_URL}/users/${id}`);
             navigate('/');
             alert("Sorry to see you go!");
         } catch (error) {
@@ -125,7 +126,7 @@ function Profile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/trips");
+                const response = await axios.get(`${API_URL}/trips`);
                 setTrips(response.data);
             } catch (error) {
                 console.error('Error fetching trips data:', error);
@@ -142,7 +143,7 @@ function Profile() {
 
         const deleteTrip = async () => {
             try {
-                const response = await axios.delete(`http://localhost:8080/trips/${id}`);
+                const response = await axios.delete(`${API_URL}/trips/${id}`);
                 const updatedTrips = trips.filter((trip) => trip.trip_id !== id);
                 setTrips(updatedTrips);
             } catch (error) {
@@ -155,6 +156,7 @@ function Profile() {
     return (
         <>
             <HeaderProfile />
+            
             {user && (
                 <div className="info">
                     <div className="info__left">
@@ -172,6 +174,7 @@ function Profile() {
                     </div>
                 </div>
             )}
+
             {!editMode && user && (
                 <div className="info">
                     <div className="info__left">
@@ -270,6 +273,7 @@ function Profile() {
                     </form>
                 </div>
             )}
+
             {myTrips.length === 0 && (
                 <div className="no-offered-trips">
                     <p>You didn't offer any trips yet. <Link to='/rides'>Offer here</Link></p>

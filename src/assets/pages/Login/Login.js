@@ -4,6 +4,7 @@ import arrowBack from '../../icons/arrow_back_FILL0_wght400_GRAD0_opsz24.svg';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../../../utils';
 
 function Login() {
     const [error, setError] = useState("");
@@ -12,7 +13,7 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:8080/users/login", {
+        axios.post(`${API_URL}/users/login`, {
             username: event.target.username.value,
             password: event.target.password.value
         })
