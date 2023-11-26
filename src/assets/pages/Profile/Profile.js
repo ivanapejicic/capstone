@@ -182,7 +182,7 @@ function Profile() {
                         <p className="info__left-text">{user.phone_number}</p>
                     </div>
                     <div className="info__right">
-                        <img
+                        <img className="info__right-icon"
                             src={edit}
                             alt="icon showing a pen and giving an option of edit"
                             onClick={enterEditMode}

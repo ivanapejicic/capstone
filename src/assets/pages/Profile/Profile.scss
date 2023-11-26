@@ -14,7 +14,7 @@
     }
 
     @include desktop {
-        margin: 4rem 15rem ;
+        margin: 4rem 15rem;
         align-items: center;
     }
 
@@ -30,7 +30,8 @@
 
     &__right {
         &-icon {
-            width: 3rem
+            width: 2.2rem;
+            cursor: pointer;
         }
     }
 }
@@ -123,12 +124,12 @@
     font-family: "the other one";
     box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    background-color: $light-grey;
+    color: $font-black;
 
     &:hover {
         background-color: $turquoise;
     }
-
-
 }
 
 .delete-confirmation {
@@ -136,6 +137,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.no-offered-trips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 1.5rem;
+
 }
 
 .my-trips {
@@ -162,12 +177,35 @@
         padding: 0;
 
         &-item {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            background-color: $white;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: $lighter-grey;
+            }
 
             @include desktop {
                 font-size: 1.5rem;
                 margin-bottom: 1rem;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $turquoise;
+            }
+
+            .delete-icon {
+                cursor: pointer;
+                margin-top: 0.5rem;
+                width: 1.5rem;
+                height: 1.5rem;
+
+                &:hover {
+                    filter: brightness(0.8);
+                }
             }
         }
     }
